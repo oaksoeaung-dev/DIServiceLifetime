@@ -1,7 +1,12 @@
+using DIServiceLifetime.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<ISingletonGuidService, SingletonGuidService>(); //ISingletoGuidService ရဲ့ implementation ကို request လုပ်လာရင် SingletonGuidService ကိုပေးမယ်
+builder.Services.AddScoped<IScopedGuidService, ScopedGuidService>();
+builder.Services.AddTransient<ITransientGuidService, TransientGuidService>();
 
 var app = builder.Build();
 
